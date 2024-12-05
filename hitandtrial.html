@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: #005d6e;
+            background-blend-mode: overlay;
+            background: #4a99be;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav {
+            background-image: linear-gradient(#2f89b3, #1e6788);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            margin-right: auto;
+            font-weight: bolder;
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .search-bar input[type="text"] {
+            padding: 8px;
+            width: 300px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ulist {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        
+        .list {
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #0b0b0b;
+            padding: 10px;
+            position: relative;
+            text-transform: none;
+            transition: all 0.3s ease;
+        }
+        
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        a:hover {
+            color: #f6f3f3;
+            text-transform: uppercase;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #3e93bb;
+            min-width: 100px;
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            color: #020202;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #3e93bb;
+            color: #f6f3f3;
+        }
+        
+        .list:hover .dropdown-content {
+            display: block;
+            color: #f6f3f3;
+        }
+        
+        .quote {
+            align-items: center;
+            font-weight: 900;
+            font-size: xx-large;
+            color: black;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .pic {
+            align-items: right;
+            justify-content: right;
+            float: inline-end;
+            margin-right: 10px;
+        }
+        
+        .about {
+            font-weight: bold;
+            font-weight: 200;
+            color: #020202;
+            top: 6px;
+        }
+        
+        .about span,
+        p {
+            font-weight: 600;
+        }
+        
+        .sun {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 80px;
+            padding: 10px;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 35px;
+        }
+        
+        .earth {
+            margin-left: 10px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+        }
+        
+        .planet {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .planet:hover {
+            box-shadow: 10px rgb(2, 27, 39);
+            transition: transform 0.3s ease;
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+            transform: scale(1.1);
+            bottom: -40px;
+            transform: scale(1.1) rotate(10deg);
+        }
+        
+        .moon {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgb(2, 27, 39);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-sizing: border-box;
+            transition: bottom 0.3s ease;
+        }
+        
+        .earth:hover .moon {
+            bottom: -40px;
+        }
+        
+        .cake {
+            display: grid;
+            margin-left: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+        }
+        
+        .cake img {
+            width: 80%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        
+        .patties {
+            margin: 10px;
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            font-style: inherit;
+            outline: black;
+            color: #021a25;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        
+        .cake img:hover {
+            transform: scale(1.4);
+        }
+        
+        footer {
+            background-image: linear-gradient(#206c8f, #144b64);
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 420px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            flex: 1;
+            text-align: left;
+            padding: 0 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 10px;
+            color: #c3d1dc;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            color: #c3d1dc;
+            text-decoration: none;
+        }
+        
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        .social-media {
+            flex: 1;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .social-media h3 {
+            margin-bottom: 10px;
+            color: #c3d1dc;
+        }
+        
+        .social-media ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .social-media ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .social-media ul li a {
+            color: #c3d1dc;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        
+        .social-media ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            flex: 1;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .footer-section,
+            .social-media {
+                flex: 1 1 100%;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo" height="55" width="110">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        <ul class="ulist">
+            <li class="list"><a href="#">Home</a></li>
+            <li class="list"><a href="#">Products</a></li>
+            <li class="list"><a href="#cat">Categories</a></li>
+            <li class="list"><a href="#">Cart</a></li>
+            <li class="list"><a href="#">Login/Signup</a></li>
+        </ul>
+    </nav> <br>
+    <div class="quote">
+        <center><span>Crafting Quality Moments, One Cut at a Time.</span></center>
+    </div><br>
+    <div class="about">
+        <div class="pic"><img src="logo.jpg" alt="" height="280" width="280"></div>
+        <span>Welcome to Borcelle Premium Cutlery, where every slice, scoop, and stir is crafted with car</span> <br><br>
+        <p>At Borcelle Premium Cutlery, we are passionate about the art of dining.</p> <br>
+        <p>With a rich history in craftsmanship and a dedication to quality, we pride </p> <br>
+        <p>ourselves on offering an exquisite range of cutlery that elevates every mealtime experience.</p><br>
+        <p>From precision-engineered knives to elegant serving utensils, each piece in our collection is </p><br>
+        <p>meticulously designed to enhance your culinary journey. We believe that every meal should be a celebration,</p><br>
+        <p>and our commitment to excellence ensures that your table is always set with the finest tools for creating memorable moments."</p><br>
+    </div> <br><br>
+    <hr>
+    <div class="sun">
+        <a href="a.html">
+            <div class="earth">
+                <div class="planet"><img src="salad fork.jpg" alt="Image 2"></div>
+                <div class="moon">Fork <br>.</div>
+            </div>
+        </a>
+        <a href="b.html">
+            <div class="earth">
+                <div class="planet"><img src="teaspoon.jpg" alt="Image 2"></div>
+                <div class="moon">Spoon <br>. </div>
+            </div>
+        </a>
+        <a href="c.html">
+            <div class="earth">
+                <div class="planet"><img src="ladles.jpg" alt="Image 2"></div>
+                <div class="moon">Serving<br>utensils</div>
+            </div>
+        </a>
+        <a href="d.html">
+            <div class="earth">
+                <div class="planet"><img src="logo.jpg" alt="Image 2"></div>
+                <div class="moon">Knives <br>.</div>
+            </div>
+        </a>
+        <a href="e.html">
+            <div class="earth">
+                <div class="planet"><img src="logo.jpg" alt="Image 2"></div>
+                <div class="moon">Other<br>Utensils</div>
+            </div>
+        </a>
+
+    </div>
+    <center>
+        <h2 class="patties">TOP SELLING PRODUCTS</h2>
+    </center>
+    <div class="cake">
+        <a href="e.html">
+            <div class="pastry">
+                <img src="logo.jpg" alt="">
+            </div>
+        </a>
+        <a href="a.html">
+            <div class="pastry">
+                <img src="logo.jpg" alt="">
+            </div>
+        </a>
+        <a href="b.html">
+            <div class="pastry">
+                <img src="logo.jpg" alt="">
+            </div>
+        </a>
+        <a href="d.html">
+            <div class="pastry">
+                <img src="logo.jpg" alt="">
+            </div>
+        </a>
+        <a href="c.html">
+            <div class="pastry">
+                <img src="logo.jpg" alt="">
+            </div>
+        </a>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">About </a></li>
+                    <li><a href="#">Customer Relations</a></li>
+                </ul>
+            </div>
+            <div class="social-media">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Crockery Company. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
